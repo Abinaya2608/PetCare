@@ -1,0 +1,89 @@
+
+{% extends 'petcareapp/base.html' %}
+
+{% block title %}Cart - PetCare{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <h1>Shopping Cart 🛒</h1>
+
+    {% if cart.items.all %}
+
+        {% for item in cart.items.all %}
+
+        <div class="cart-item">
+
+            <div>
+
+                <h3>
+                    {{ item.product.name }}
+                </h3>
+
+                <p>
+                    ₹{{ item.product.get_price }}
+                </p>
+
+            </div>
+
+
+            <form method="POST" action="{% url 'update_cart' %}">
+    {% csrf_token %}
+
+    <input
+        type="number"
+        name="quantity_{{ item.id }}"
+        value="{{ item.quantity }}"
+        min="1"
+        max="{{ item.product.stock }}"
+        class="quantity-input"
+    >
+
+    <button type="submit" class="btn btn-primary">
+        Update
+    </button>
+</form>
+
+            <p>
+                Total:
+                ₹{{ item.total_price }}
+            </p>
+
+
+            <a href="{% url 'remove_from_cart' item.id %}">
+                Remove
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+
+        <div class="cart-total">
+
+            <h2>
+                Total: ₹{{ cart.total_price }}
+            </h2>
+
+            <a href="{% url 'checkout' %}"
+               class="btn">
+                Checkout
+            </a>
+
+        </div>
+
+    {% else %}
+
+        <p>Your cart is empty.</p>
+
+        <a href="{% url 'products' %}"
+           class="btn">
+            Shop Products
+        </a>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

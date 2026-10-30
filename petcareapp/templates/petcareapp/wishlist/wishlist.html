@@ -1,0 +1,59 @@
+
+{% extends 'petcareapp/base.html' %}
+
+{% block title %}Wishlist - PetCare{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <h1>My Wishlist ❤️</h1>
+
+
+    <div class="product-grid">
+
+        {% for item in wishlist %}
+
+        <div class="product-card">
+
+            {% if item.product.image %}
+
+                <img src="{{ item.product.image.url }}"
+                     alt="{{ item.product.name }}">
+
+            {% endif %}
+
+
+            <h3>
+                {{ item.product.name }}
+            </h3>
+
+
+            <p class="price">
+                ₹{{ item.product.get_price }}
+            </p>
+
+
+            <a href="{% url 'product_detail' item.product.id %}"
+               class="btn">
+                View Product
+            </a>
+
+
+            <a href="{% url 'remove_from_wishlist' item.product.id %}">
+                Remove
+            </a>
+
+        </div>
+
+        {% empty %}
+
+            <p>Your wishlist is empty.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

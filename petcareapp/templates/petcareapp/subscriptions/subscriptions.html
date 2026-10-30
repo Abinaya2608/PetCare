@@ -1,0 +1,63 @@
+
+{% extends 'petcareapp/base.html' %}
+
+{% block title %}Subscriptions - PetCare{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <h1>My Subscriptions 🔄</h1>
+
+
+    {% for subscription in subscriptions %}
+
+    <div class="subscription-card">
+
+        <h3>
+            {{ subscription.product.name }}
+        </h3>
+
+        <p>
+            Quantity:
+            {{ subscription.quantity }}
+        </p>
+
+        <p>
+            Frequency:
+            {{ subscription.frequency }}
+        </p>
+
+        <p>
+            Status:
+            {{ subscription.status }}
+        </p>
+
+        <p>
+            Next Delivery:
+            {{ subscription.next_delivery }}
+        </p>
+
+
+        <form method="POST"
+              action="{% url 'cancel_subscription' subscription.id %}">
+
+            {% csrf_token %}
+
+            <button type="submit">
+                Cancel Subscription
+            </button>
+
+        </form>
+
+    </div>
+
+    {% empty %}
+
+        <p>You don't have any subscriptions.</p>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}

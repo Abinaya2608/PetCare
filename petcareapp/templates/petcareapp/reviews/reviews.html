@@ -1,0 +1,44 @@
+
+{% extends 'petcareapp/base.html' %}
+
+{% block title %}Reviews - PetCare{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <h1>Product Reviews ⭐</h1>
+
+
+    {% for review in reviews %}
+
+    <div class="review-card">
+
+        <h3>
+            {{ review.product.name }}
+        </h3>
+
+        <p>
+            Rating:
+            {{ review.rating }}/5
+        </p>
+
+        <p>
+            {{ review.comment }}
+        </p>
+
+        <small>
+            {{ review.created_at }}
+        </small>
+
+    </div>
+
+    {% empty %}
+
+        <p>No reviews yet.</p>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}

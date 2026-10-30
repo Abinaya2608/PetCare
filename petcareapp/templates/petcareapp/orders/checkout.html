@@ -1,0 +1,66 @@
+
+{% extends 'petcareapp/base.html' %}
+
+{% block title %}Checkout - PetCare{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1>Checkout</h1>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>Full Name</label>
+        <input type="text"
+               name="full_name"
+               required>
+
+
+        <label>Phone</label>
+        <input type="text"
+               name="phone"
+               required>
+
+
+        <label>Address</label>
+        <textarea
+            name="address"
+            required></textarea>
+
+
+        <label>City</label>
+        <input type="text"
+               name="city"
+               required>
+
+
+        <label>State</label>
+        <input type="text"
+               name="state"
+               required>
+
+
+        <label>Pincode</label>
+        <input type="text"
+               name="pincode"
+               required>
+
+
+        <h3>
+            Order Total: ₹{{ cart.total_price }}
+        </h3>
+
+
+        <button type="submit" class="btn">
+            Place Order
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

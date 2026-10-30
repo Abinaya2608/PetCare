@@ -1,0 +1,105 @@
+
+{% extends 'petcareapp/base.html' %}
+
+{% block title %}{{ product.name }} - PetCare{% endblock %}
+
+{% block content %}
+
+<section class="product-detail">
+
+    <div class="product-image">
+
+        {% if product.image %}
+            <img src="{{ product.image.url }}"
+                 alt="{{ product.name }}">
+        {% else %}
+            <div class="large-no-image">
+                🐾
+            </div>
+        {% endif %}
+
+    </div>
+
+
+    <div class="product-info">
+
+        <h1>{{ product.name }}</h1>
+
+        <p>
+            <strong>Pet:</strong>
+            {{ product.pet_type }}
+        </p>
+
+        <p>
+            <strong>Brand:</strong>
+            {{ product.brand }}
+        </p>
+
+        <p>
+            {{ product.description }}
+        </p>
+
+        {% if product.discount_price %}
+
+            <p class="old-price">
+                ₹{{ product.price }}
+            </p>
+
+            <h2 class="price">
+                ₹{{ product.discount_price }}
+            </h2>
+
+        {% else %}
+
+            <h2 class="price">
+                ₹{{ product.price }}
+            </h2>
+
+        {% endif %}
+
+
+        <p>
+            <strong>Stock:</strong>
+            {{ product.stock }}
+        </p>
+
+
+        {% if product.stock > 0 %}
+
+            <form method="POST"
+                  action="{% url 'add_to_cart' product.id %}">
+
+                {% csrf_token %}
+
+                <input
+                    type="number"
+                    name="quantity"
+                    value="1"
+                    min="1"
+                    max="{{ product.stock }}"
+                >
+
+                <button type="submit" class="btn">
+                    Add to Cart
+                </button>
+
+            </form>
+
+        {% else %}
+
+            <p class="out-stock">
+                Out of stock
+            </p>
+
+        {% endif %}
+
+
+        <a href="{% url 'wishlist' %}">
+            Add to Wishlist
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

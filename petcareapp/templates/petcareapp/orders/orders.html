@@ -1,0 +1,51 @@
+
+{% extends 'petcareapp/base.html' %}
+
+{% block title %}My Orders - PetCare{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <h1>My Orders</h1>
+
+
+    {% for order in orders %}
+
+    <div class="order-card">
+
+        <h3>
+            Order #{{ order.id }}
+        </h3>
+
+        <p>
+            Date:
+            {{ order.ordered_at }}
+        </p>
+
+        <p>
+            Total:
+            ₹{{ order.total_amount }}
+        </p>
+
+        <p>
+            Status:
+            {{ order.status }}
+        </p>
+
+    </div>
+
+    {% empty %}
+
+        <p>You haven't placed any orders yet.</p>
+
+        <a href="{% url 'products' %}"
+           class="btn">
+            Start Shopping
+        </a>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}

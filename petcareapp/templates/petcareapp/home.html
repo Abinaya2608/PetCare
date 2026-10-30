@@ -1,0 +1,86 @@
+{% extends 'petcareapp/base.html' %}
+
+{% block title %}Home - PetCare{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div>
+        <h1>Everything Your Pet Needs 🐾</h1>
+
+        <p>
+            Find quality food, toys and accessories
+            for your favourite pets.
+        </p>
+
+        <a href="{% url 'products' %}" class="btn">
+            Shop Now
+        </a>
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <h2>Shop By Pet</h2>
+
+    <div class="category-grid">
+
+        <div class="category-card">
+            <h3>🐶 Dogs</h3>
+            <p>Food, toys and accessories</p>
+        </div>
+
+        <div class="category-card">
+            <h3>🐱 Cats</h3>
+            <p>Food, toys and care products</p>
+        </div>
+
+        <div class="category-card">
+            <h3>🐦 Birds</h3>
+            <p>Food and accessories</p>
+        </div>
+
+        <div class="category-card">
+            <h3>🐟 Fish</h3>
+            <p>Food and aquarium supplies</p>
+        </div>
+
+        <div class="category-card">
+            <h3>🐹 Small Pets</h3>
+            <p>Food, toys and accessories</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <h2>Why Choose PetCare?</h2>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <h3>Quality Products</h3>
+            <p>Products selected for your pets.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Easy Shopping</h3>
+            <p>Simple and convenient online shopping.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Subscriptions</h3>
+            <p>Schedule regular orders for pet essentials.</p>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
